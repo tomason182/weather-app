@@ -3,11 +3,21 @@ const apiKey = "ec12d0dee4604907929185302240705";
 
 const getWeather = async () => {
 
-  const location = getLocation();
+  try {
+    const location = getLocation();
 
-  const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
-  const response = await fetch(url, {mode: "cors"});
-  const jsonResponse = await response.json();
+    const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
+    const response = await fetch(url, {mode: "cors"});
+    const jsonResponse = await response.json();
+    
+    return jsonResponse;
+
+  } catch (error) {
+    console.log("An error ocurred: ", error);
+  }
+}
+
+const getParams = async function getSpecificWeatherParameters(callback) {
 
   const params = {
     name: {
@@ -52,14 +62,16 @@ const getWeather = async () => {
     }
   }
 
-  Object.keys(params).forEach((key) => {
+  const response = await callback();
+
+   Object.keys(params).forEach((key) => {
     const firstParam = params[key].dir1;
     const secondParam = params[key].dir2;
-    console.log(jsonResponse[firstParam][secondParam]);
-    params[key].value = jsonResponse[firstParam][secondParam];
+
+    params[key].value = response[firstParam][secondParam];
 
   })
-  
+  console.log(params);
   return params;
 }
 
@@ -68,4 +80,4 @@ const getLocation = function getLocationFromInput() {
   return location;
 }
 
-getWeather();
+getParams(getWeather);
