@@ -1,18 +1,35 @@
-baseUrl =  "https://api.weatherapi.com/v1";
-apiKey = "ec12d0dee4604907929185302240705";
+const baseUrl =  "https://api.weatherapi.com/v1";
+const apiKey = "ec12d0dee4604907929185302240705";
 
-url = `${baseUrl}/current.json?key=${apiKey}&q=azul&aqi=no`;
- 
-fetch(url, {mode: "cors"})
-  .then(function(response) {
-    return response.json();
+const getWeather = async () => {
+
+  const location = getLocation();
+
+  const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
+  const response = await fetch(url, {mode: "cors"});
+  const jsonResponse = await response.json();
+
+  const params = {
+    name: "location.name", 
+    region: "location.region", 
+    country: "location.country", 
+    localtime: "location.localtime", 
+    temp_c: "current.temp_c",
+    temp_f: "current.temp_f",
+    humidity: "current.humidity",
+    precip_mm: "current.precip_mm"}
+  
+
+  Object.keys(params).forEach((value) => {
+    console.log(params[value]);
   })
-  .then(function(response) {
-    console.log(response);
-    console.log(response.location.name);
-    console.log(response.location.region);
-    console.log(response.current.temp_c);
-  })
-  .catch(function(error) {
-    console.log(error);
-  })
+  
+  return jsonResponse;
+}
+
+const getLocation = function getLocationFromInput() {
+  const location = "azul";
+  return location;
+}
+
+getWeather();
