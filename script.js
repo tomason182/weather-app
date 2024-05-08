@@ -15,13 +15,13 @@ const fetchWeather = async (url) => {
     throw error;
   }
 }
-const fetchCurrentWeatherData = async (location) => {
+/* const fetchCurrentWeatherData = async (location) => {
 
   const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
   const response = await fetchWeather(url);
   return response;
 
-}
+} */
 
 const fetchForecastWeatherData = async (location) => {
   const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${location}&aqi=no`;
@@ -75,9 +75,18 @@ const getHumidity = ({current: {humidity: value}}) => {
   return value;
 }
 
-fetchCurrentWeatherData("azul")
+const getMaxTempC = ({forecast: {forecastday: [{day: {maxtemp_c: value}}]}}) => {
+  return value;
+}
+
+const getMaxTempF = ({forecast: {forecastday: [{day: {maxtemp_f: value}}]}}) => {
+  return value;
+}
+
+fetchForecastWeatherData("azul")
   .then((jsonResponse) => {
     // console.log(jsonResponse);
+    console.log(jsonResponse.forecast.forecastday)
     return {
       "name": getCity(jsonResponse),
       "region": getRegion(jsonResponse),
@@ -89,11 +98,13 @@ fetchCurrentWeatherData("azul")
       "icon": getConditionIcon(jsonResponse),
       "wind_kpm": getWindSpeedKph(jsonResponse),
       "wind_dir": getWindDirection(jsonResponse),
-      "Humidity": getHumidity(jsonResponse)
+      "Humidity": getHumidity(jsonResponse),
+      "maxTempC": getMaxTempC(jsonResponse),
+      "maxTempF": getMaxTempF(jsonResponse)
     }   
   })
   .then((response) => {
-    console.log(response.temp_c); // Just for checking the returns values
+    console.log(response); // Just for checking the returns values
   } )
   .catch((error) => {
     console.error("Error: ", error);
