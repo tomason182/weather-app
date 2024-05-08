@@ -17,7 +17,7 @@ const fetchWeather = async (url) => {
 }
 
 const fetchForecastWeatherData = async (location) => {
-  const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${location}&aqi=no`;
+  const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${location}&aqi=no&days=3`;
   const response = await fetchWeather(url);
   return response;
 }
@@ -84,14 +84,14 @@ const getMinTempF = ({forecast: {forecastday: [{day: {mintemp_f: value}}]}}) => 
   return value;
 }
 
-const getRainProb = ({forecast: {forecastday: [{day: {daily_change_of_rain: value}}]}}) => {
+const getRainProb = ({forecast: {forecastday: [{day: {daily_chance_of_rain: value}}]}}) => {
   return value;
 }
 
 fetchForecastWeatherData("azul")
   .then((jsonResponse) => {
     // console.log(jsonResponse);
-    console.log(jsonResponse.forecast.forecastday)
+    //console.log(jsonResponse.forecast.forecastday)
     return {
       "name": getCity(jsonResponse),
       "region": getRegion(jsonResponse),
