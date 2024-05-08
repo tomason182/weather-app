@@ -8,7 +8,6 @@ const getCurrentWeather = async () => {
 
   try {
     const response = await fetch(url, {mode: "cors"});
-    console.log(response.ok);
     if(!response.ok) {
       throw new Error("Failed to fetch weather data");
     }
@@ -23,10 +22,33 @@ const getCurrentWeather = async () => {
   }
 }
 
+const getLocationData = async function getLocationDataFromJsonResponse(callback) {
+  try {
+    const response = await callback();
+    const name = response.location.name;
+    const region = response.location.region;
+    const country = response.location.country;
+  
+    return [name, region, country];
+  } catch(error) {
+    console.log("Failed to fetch location data: ", error);
+    throw error;
+  }
+
+}
+
+const getTemperature = async function getTemperatureDataFromJsonResponse(callback) {
+  const response = await callback();
+
+}
+
 const getLocation = function getLocationFromInput() {
   const location = "azul";
   return location;
 }
+
+
+
 
 
 /* const getParams = async function getSpecificWeatherParameters(callback) {
@@ -38,7 +60,7 @@ const getLocation = function getLocationFromInput() {
       value: null
     }, 
     region: {
-      dir1: "location",
+      dir1: "location",a
       dir2: "region",
       value: null
     },   
