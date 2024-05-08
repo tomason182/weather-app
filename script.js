@@ -1,7 +1,7 @@
 const baseUrl =  "https://api.weatherapi.com/v1";
 const apiKey = "ec12d0dee4604907929185302240705";
 
-const getJsonResponse = async () => {
+const fetchWeatherData = async () => {
 
   const location = getLocation();
   const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
