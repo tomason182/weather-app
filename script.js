@@ -17,6 +17,11 @@ const fetchForecastWeather = async (location="azul") => {
   }
 }
 
+const todayWeather = async function fetchTodayWeather() {
+  return await fetchForecastWeather();
+
+}
+
 const todayForecast = async function fetchTodayForecast() {
   const response = await fetchForecastWeather();
   return response.forecast.forecastday[0]; 
@@ -126,15 +131,27 @@ const getRainProb = ({day: {daily_chance_of_rain: value}}) => {
   return value;
 }
 
+todayWeather()
+  .then((response) => {
+    return forecastInfo(response);
+  })
+  .then((result) => {
+    console.log("Today's weather: ",result)
+  })
+  .catch((error) => {
+    console.error("Error in today's weather; ", error);
+    throw error;
+  })
+
 todayForecast()
   .then((response) => {
     return forecastParams(response);
   })
   .then((result) => {
-    console.log(result);
+    console.log("Today's forecast: ", result);
   })
   .catch((error) => {
-    console.error("Error: ", error);
+    console.error("Error in today's forecast: ", error);
     throw error;
   })
 
@@ -143,10 +160,10 @@ tomorrowForecast()
     return forecastParams(response);
   })
   .then((result) => {
-    console.log(result);
+    console.log("Tomorrow forecast: ",result);
   })
   .catch((error) => {
-    console.error("Error: ", error);
+    console.error("Error in tomorrow's forecast: ", error);
     throw error;
 })
 
@@ -155,9 +172,9 @@ afterTomorrowForecast()
   return forecastParams(response);
 })
 .then((result) => {
-  console.log(result);
+  console.log("After tomorrow forecast: ", result);
 })
 .catch((error) => {
-  console.error("Error: ", error);
+  console.error("Error in after tomorrow forecast: ", error);
   throw error;
 })
