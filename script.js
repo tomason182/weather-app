@@ -15,13 +15,6 @@ const fetchWeather = async (url) => {
     throw error;
   }
 }
-/* const fetchCurrentWeatherData = async (location) => {
-
-  const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
-  const response = await fetchWeather(url);
-  return response;
-
-} */
 
 const fetchForecastWeatherData = async (location) => {
   const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${location}&aqi=no`;
@@ -83,6 +76,18 @@ const getMaxTempF = ({forecast: {forecastday: [{day: {maxtemp_f: value}}]}}) => 
   return value;
 }
 
+const getMinTempC = ({forecast: {forecastday: [{day: {mintemp_c: value}}]}}) => {
+  return value;
+}
+
+const getMinTempF = ({forecast: {forecastday: [{day: {mintemp_f: value}}]}}) => {
+  return value;
+}
+
+const getRainProb = ({forecast: {forecastday: [{day: {daily_change_of_rain: value}}]}}) => {
+  return value;
+}
+
 fetchForecastWeatherData("azul")
   .then((jsonResponse) => {
     // console.log(jsonResponse);
@@ -100,7 +105,10 @@ fetchForecastWeatherData("azul")
       "wind_dir": getWindDirection(jsonResponse),
       "Humidity": getHumidity(jsonResponse),
       "maxTempC": getMaxTempC(jsonResponse),
-      "maxTempF": getMaxTempF(jsonResponse)
+      "maxTempF": getMaxTempF(jsonResponse),
+      "minTempC": getMinTempC(jsonResponse),
+      "minTempF": getMinTempF(jsonResponse),
+      "rain_prob": getRainProb(jsonResponse)
     }   
   })
   .then((response) => {
