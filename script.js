@@ -13,7 +13,7 @@ const getCurrentWeather = async () => {
     }
 
     const jsonResponse = await response.json();
-    
+    console.log(jsonResponse);
     return jsonResponse;
 
   } catch(error) {
@@ -37,9 +37,17 @@ const getLocationData = async function getLocationDataFromJsonResponse(callback)
 
 }
 
-const getTemperature = async function getTemperatureDataFromJsonResponse(callback) {
-  const response = await callback();
+const getCurrentTemperature = async function getTemperatureDataFromJsonResponse(callback) {
+  try {
+    const response = await callback();
+    const temp_c = response.current.temp_c;
+    const temp_f = response.current.temp_f;
 
+    return [temp_c, temp_f];
+
+  } catch(error) {
+    console.log("Failed to fetch current temperature", error);
+  }
 }
 
 const getLocation = function getLocationFromInput() {
@@ -47,7 +55,7 @@ const getLocation = function getLocationFromInput() {
   return location;
 }
 
-
+getCurrentWeather();
 
 
 
