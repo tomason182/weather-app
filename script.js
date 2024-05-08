@@ -1,7 +1,7 @@
 const baseUrl =  "https://api.weatherapi.com/v1";
 const apiKey = "ec12d0dee4604907929185302240705";
 
-const getCurrentWeather = async () => {
+const getJsonResponse = async () => {
 
   const location = getLocation();
   const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
@@ -13,7 +13,6 @@ const getCurrentWeather = async () => {
     }
 
     const jsonResponse = await response.json();
-    console.log(jsonResponse);
     return jsonResponse;
 
   } catch(error) {
@@ -38,29 +37,31 @@ const getLocationData = async function getLocationDataFromJsonResponse(callback)
 
 }
 
-const getCurrentTemperature = async function getTemperatureDataFromJsonResponse(callback) {
+const getCurrentWeather = async function getWheatherConditionFromJsonResponse(callback) {
   try {
     const response = await callback();
     const temp_c = response.current.temp_c;
     const temp_f = response.current.temp_f;
+    const text = response.current.condition.text;
+    const icon = response.current.condition.icon;
+    const windMph = response.current.wind_mph;
+    const precip_mm = response.current.precip_mm;
+    const humidity = response.current.humidity;
+    const cloud = response.current.cloud;
 
-    return [temp_c, temp_f];
+    return {
+      "tempCelcius": temp_c,
+      "tempFarenheit": temp_f,
+      "conditionText": text,
+      "conditionIcon": icon,
+      "wind": windMph,
+      "precip": precip_mm,
+      "humidity": humidity,
+      "cloud": cloud,
+    }
 
   } catch(error) {
     console.log("Failed to fetch current temperature", error);
-  }
-}
-
-const getCurrentCondition = async function (callback) {
-  try {
-    const response = await callback();
-    const currentConditionText = response.current.condition.text;
-    const currentConditionIcon = response.current.condition.icon;
-
-    return [currentConditionText, currentConditionIcon];
-  } catch(error) {
-    console.log("Failed to fetch current condition info", error);
-    throw error;
   }
 }
 
@@ -69,7 +70,12 @@ const getLocation = function getLocationFromInput() {
   return location;
 }
 
-getCurrentWeather();
+const finalResult = async () => {
+ const result = await getCurrentWeather(getJsonResponse);
+ console.log(result.tempCelcius);
+}
+
+finalResult();
 
 
 
