@@ -51,6 +51,19 @@ const getCurrentTemperature = async function getTemperatureDataFromJsonResponse(
   }
 }
 
+const getCurrentCondition = async function (callback) {
+  try {
+    const response = await callback();
+    const currentConditionText = response.current.condition.text;
+    const currentConditionIcon = response.current.condition.icon;
+
+    return [currentConditionText, currentConditionIcon];
+  } catch(error) {
+    console.log("Failed to fetch current condition info", error);
+    throw error;
+  }
+}
+
 const getLocation = function getLocationFromInput() {
   const location = "azul";
   return location;
