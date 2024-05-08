@@ -28,8 +28,9 @@ const getLocationData = async function getLocationDataFromJsonResponse(callback)
     const name = response.location.name;
     const region = response.location.region;
     const country = response.location.country;
+    const localtime = response.location.localtime;
   
-    return [name, region, country];
+    return [name, region, country, localtime];
   } catch(error) {
     console.log("Failed to fetch location data: ", error);
     throw error;
