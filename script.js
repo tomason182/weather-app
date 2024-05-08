@@ -2,9 +2,8 @@ const baseUrl =  "https://api.weatherapi.com/v1";
 const apiKey = "ec12d0dee4604907929185302240705";
 
 // Function to fetch weather data from api
-const fetchCurrentWeatherData = async (location) => {
 
-  const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
+const fetchWeather = async (url) => {
   try {
     const response = await fetch(url, {mode: "cors"});
     if(!response.ok) {
@@ -15,6 +14,19 @@ const fetchCurrentWeatherData = async (location) => {
     console.error("Error fetching weather data: ", error);
     throw error;
   }
+}
+const fetchCurrentWeatherData = async (location) => {
+
+  const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
+  const response = await fetchWeather(url);
+  return response;
+
+}
+
+const fetchForecastWeatherData = async (location) => {
+  const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${location}&aqi=no`;
+  const response = await fetchWeather(url);
+  return response;
 }
 
 // Function to extract specific values from JSON response
@@ -63,7 +75,6 @@ const getHumidity = ({current: {humidity: value}}) => {
   return value;
 }
 
-
 fetchCurrentWeatherData("azul")
   .then((jsonResponse) => {
     // console.log(jsonResponse);
@@ -82,7 +93,7 @@ fetchCurrentWeatherData("azul")
     }   
   })
   .then((response) => {
-    console.log(response.temp_c);
+    console.log(response.temp_c); // Just for checking the returns values
   } )
   .catch((error) => {
     console.error("Error: ", error);
