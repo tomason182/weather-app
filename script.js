@@ -1,23 +1,35 @@
 const baseUrl =  "https://api.weatherapi.com/v1";
 const apiKey = "ec12d0dee4604907929185302240705";
 
-const getWeather = async () => {
+const getCurrentWeather = async () => {
+
+  const location = getLocation();
+  const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
 
   try {
-    const location = getLocation();
-
-    const url = `${baseUrl}/current.json?key=${apiKey}&q=${location}&aqi=no`;
     const response = await fetch(url, {mode: "cors"});
+    console.log(response.ok);
+    if(!response.ok) {
+      throw new Error("Failed to fetch weather data");
+    }
+
     const jsonResponse = await response.json();
     
     return jsonResponse;
 
-  } catch (error) {
-    console.log("An error ocurred: ", error);
+  } catch(error) {
+    console.error("Error fetching weather data: ", error);
+    throw error;
   }
 }
 
-const getParams = async function getSpecificWeatherParameters(callback) {
+const getLocation = function getLocationFromInput() {
+  const location = "azul";
+  return location;
+}
+
+
+/* const getParams = async function getSpecificWeatherParameters(callback) {
 
   const params = {
     name: {
@@ -73,11 +85,5 @@ const getParams = async function getSpecificWeatherParameters(callback) {
   })
   console.log(params);
   return params;
-}
+} */
 
-const getLocation = function getLocationFromInput() {
-  const location = "azul";
-  return location;
-}
-
-getParams(getWeather);
