@@ -3,7 +3,8 @@ const apiKey = "ec12d0dee4604907929185302240705";
 
 // Function to fetch weather data from api
 
-const fetchWeather = async (url) => {
+const fetchForecastWeather = async (location="azul") => {
+  const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${location}&aqi=no&days=3`;
   try {
     const response = await fetch(url, {mode: "cors"});
     if(!response.ok) {
@@ -16,11 +17,48 @@ const fetchWeather = async (url) => {
   }
 }
 
-const fetchForecastWeatherData = async (location) => {
-  const url = `${baseUrl}/forecast.json?key=${apiKey}&q=${location}&aqi=no&days=3`;
-  const response = await fetchWeather(url);
-  return response;
+const todayForecast = async function fetchTodayForecast() {
+  const response = await fetchForecastWeather();
+  return response.forecast.forecastday[0]; 
 }
+
+const tomorrowForecast = async function fetchTomorrowForecast() {
+  const response = await fetchForecastWeather();
+  return response.forecast.forecastday[1];
+}
+
+const afterTomorrowForecast = async function fetchAfterTomorrowForecast() {
+  const response = await fetchForecastWeather();
+  return response.forecast.forecastday[2];
+}
+
+const forecastInfo = (jsonResponse) => {
+  return {
+    "city": getCity(jsonResponse),
+    "region": getRegion(jsonResponse),
+    "country": getCountry(jsonResponse),
+    "localtime": getLocalTime(jsonResponse),
+    "temp_c": getTempInCelsius(jsonResponse),
+    "temp_f": getTempInFahrenheit(jsonResponse),
+    "condition_text": getConditionText(jsonResponse),
+    "condition_icon": getConditionIcon(jsonResponse),
+    "wind_kph": getWindSpeedKph(jsonResponse),
+    "wind_dir": getWindDirection(jsonResponse),
+    "humidity": getHumidity(jsonResponse),
+  }
+}
+
+const forecastParams = (jsonResponse) => {
+  return {
+
+    "max_temp_c": getMaxTempC(jsonResponse),
+    "max_temp_f": getMaxTempF(jsonResponse),
+    "min_temp_c": getMinTempC(jsonResponse),
+    "min_temp_f": getMinTempF(jsonResponse),
+    "rain_prob": getRainProb(jsonResponse)
+  }
+}
+
 
 // Function to extract specific values from JSON response
 
@@ -48,7 +86,7 @@ const getTempInFahrenheit = ({current: {temp_f: value}}) => {
   return value;
 }
 
-const getCondition = ({current: {condition: {text: value}}}) => {
+const getConditionText = ({current: {condition: {text: value}}}) => {
   return value;
 }
 
@@ -68,52 +106,58 @@ const getHumidity = ({current: {humidity: value}}) => {
   return value;
 }
 
-const getMaxTempC = ({forecast: {forecastday: [{day: {maxtemp_c: value}}]}}) => {
+const getMaxTempC = ({day: {maxtemp_c: value}}) => {
   return value;
 }
 
-const getMaxTempF = ({forecast: {forecastday: [{day: {maxtemp_f: value}}]}}) => {
+const getMaxTempF = ({day: {maxtemp_f: value}}) => {
   return value;
 }
 
-const getMinTempC = ({forecast: {forecastday: [{day: {mintemp_c: value}}]}}) => {
+const getMinTempC = ({day: {mintemp_c: value}}) => {
   return value;
 }
 
-const getMinTempF = ({forecast: {forecastday: [{day: {mintemp_f: value}}]}}) => {
+const getMinTempF = ({day: {mintemp_f: value}}) => {
   return value;
 }
 
-const getRainProb = ({forecast: {forecastday: [{day: {daily_chance_of_rain: value}}]}}) => {
+const getRainProb = ({day: {daily_chance_of_rain: value}}) => {
   return value;
 }
 
-fetchForecastWeatherData("azul")
-  .then((jsonResponse) => {
-    // console.log(jsonResponse);
-    //console.log(jsonResponse.forecast.forecastday)
-    return {
-      "name": getCity(jsonResponse),
-      "region": getRegion(jsonResponse),
-      "country": getCountry(jsonResponse),
-      "localtime": getLocalTime(jsonResponse),
-      "temp_c": getTempInCelsius(jsonResponse),
-      "temp_f": getTempInFahrenheit(jsonResponse),
-      "text": getCondition(jsonResponse),
-      "icon": getConditionIcon(jsonResponse),
-      "wind_kpm": getWindSpeedKph(jsonResponse),
-      "wind_dir": getWindDirection(jsonResponse),
-      "Humidity": getHumidity(jsonResponse),
-      "maxTempC": getMaxTempC(jsonResponse),
-      "maxTempF": getMaxTempF(jsonResponse),
-      "minTempC": getMinTempC(jsonResponse),
-      "minTempF": getMinTempF(jsonResponse),
-      "rain_prob": getRainProb(jsonResponse)
-    }   
-  })
+todayForecast()
   .then((response) => {
-    console.log(response); // Just for checking the returns values
-  } )
+    return forecastParams(response);
+  })
+  .then((result) => {
+    console.log(result);
+  })
   .catch((error) => {
     console.error("Error: ", error);
+    throw error;
   })
+
+tomorrowForecast()
+  .then((response) => {
+    return forecastParams(response);
+  })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.error("Error: ", error);
+    throw error;
+})
+
+afterTomorrowForecast()
+.then((response) => {
+  return forecastParams(response);
+})
+.then((result) => {
+  console.log(result);
+})
+.catch((error) => {
+  console.error("Error: ", error);
+  throw error;
+})
