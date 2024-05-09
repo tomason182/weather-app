@@ -18,8 +18,6 @@ function getSearchValue() {
 
 const displayWeather = function generateWeatherContainersAndDisplayInfo() {
     const mainContent = document.getElementById('main-content');
-    const location = `${today.city}, ${today.region}, ${today.country} - ${today.localtime}`;
-    console.log(location);
 
     // Create container for display today's weather
     const todayWeatherContainer = document.createElement('div');
@@ -29,11 +27,16 @@ const displayWeather = function generateWeatherContainersAndDisplayInfo() {
     const todayTitleContainer = document.createElement('div');
     todayTitleContainer.className = 'today-title-container';
 
-    const todayTitle = document.createElement('h2');
-    todayTitle.className = 'today-title';
-    todayTitle.textContent = location;
+    const location = document.createElement('h2');
+    location.className = 'location';
+    location.textContent = `${today.city}, ${today.region}, ${today.country}`;
+    const localtime = document.createElement('h3');
+    localtime.className = 'localtime';
+    localtime.textContent = `${today.localtime}`;
 
-    todayTitleContainer.appendChild(todayTitle);
+
+    todayTitleContainer.appendChild(location);
+    todayTitleContainer.appendChild(localtime);
     todayWeatherContainer.appendChild(todayTitleContainer);
 
     // Create container for display today's details
