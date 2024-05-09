@@ -40,3 +40,17 @@
     height: 50vh;
     width: 60%;
 }
+
+input[type="text"] {
+    appearance: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+#search {
+    border: 1px solid #ccc;
+    width: 22rem;
+    padding: .3rem;
+    border-radius: 5px;
+}
