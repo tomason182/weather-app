@@ -19,7 +19,6 @@ const fetchForecastWeather = async (location="azul") => {
 
 const todayWeather = async function fetchTodayWeather() {
   return await fetchForecastWeather();
-
 }
 
 const todayForecast = async function fetchTodayForecast() {
@@ -55,7 +54,6 @@ const forecastInfo = (jsonResponse) => {
 
 const forecastParams = (jsonResponse) => {
   return {
-
     "max_temp_c": getMaxTempC(jsonResponse),
     "max_temp_f": getMaxTempF(jsonResponse),
     "min_temp_c": getMinTempC(jsonResponse),
@@ -65,7 +63,6 @@ const forecastParams = (jsonResponse) => {
     "condition_icon": getConditionForecastIcon(jsonResponse)
   }
 }
-
 
 // Function to extract specific values from JSON response
 
@@ -141,38 +138,48 @@ const getRainProb = ({day: {daily_chance_of_rain: value}}) => {
   return value;
 }
 
-todayWeather()
-  .then((response) => {
-    return forecastInfo(response);
-  })
-  .catch((error) => {
-    console.error("Error in today's weather; ", error);
+async function getTodayWeatherData() {
+  try {
+    const response = await todayWeather();
+    const result = await forecastInfo(response);
+    return result;
+  } catch (error) {
+    console.error("Error in today's weather: ", error);
     throw error;
-  })
+  }
+}
 
-todayForecast()
-  .then((response) => {
-    return forecastParams(response);
-  })
-  .catch((error) => {
-    console.error("Error in today's forecast: ", error);
+async function getTodayForecastData() {
+  try {
+    const response = await todayForecast();
+    const result = await forecastParams(response);
+    return result;
+  } catch (error) {
+    console.error("Error in today' forecast: ", error);
     throw error;
-  })
+  }
+}
 
-tomorrowForecast()
-  .then((response) => {
-    return forecastParams(response);
-  })
-  .catch((error) => {
-    console.error("Error in tomorrow's forecast: ", error);
+async function getTomorrowForecastData() {
+  try {
+    const response = await tomorrowForecast();
+    const result = await forecastParams(response);
+    return result;
+  } catch (error) {
+    console.error("Error in tomorrow's forecast: ", error)
     throw error;
-})
+  }
+}
 
-afterTomorrowForecast()
-.then((response) => {
-  return forecastParams(response);
-})
-.catch((error) => {
-  console.error("Error in after tomorrow forecast: ", error);
-  throw error;
-})
+async function getAfterTomorrowForecastData() {
+  try {
+    const response = await afterTomorrowForecast();
+    const result = await forecastParams(response);
+    return result;
+  } catch (error) {
+    console.error("Error in after tomorrow forecast: ", error);
+    throw error;
+  }
+}
+
+export {getTodayWeatherData, getTodayForecastData, getTomorrowForecastData, getAfterTomorrowForecastData}
