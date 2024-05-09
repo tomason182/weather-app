@@ -15,4 +15,9 @@ function getSearchValue() {
     })
 }
 
+const displayWeather = function generateWeatherContainersAndDisplayInfo() {
+    const mainContent = document.getElementById('main-content');
+}
+
+
 getSearchValue()
