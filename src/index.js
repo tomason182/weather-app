@@ -27,6 +27,7 @@ const displayWeather = function generateWeatherContainersAndDisplayInfo() {
     const todayTitleContainer = document.createElement('div');
     todayTitleContainer.className = 'today-title-container';
 
+    // Location and localtime title.
     const location = document.createElement('h2');
     location.className = 'location';
     location.textContent = `${today.city}, ${today.region}, ${today.country}`;
@@ -34,10 +35,24 @@ const displayWeather = function generateWeatherContainersAndDisplayInfo() {
     localtime.className = 'localtime';
     localtime.textContent = `${today.localtime}`;
 
+    // Today weather condition summary;
+    const todaySummary = document.createElement('div');
+    todaySummary.className = 'today-summary';
+
+    const todayForecastContainer = document.createElement('div');
+    todayForecastContainer.className = 'today-forecast-container';
+
+    const todayForecastDetails = document.createElement('div');
+    todayForecastDetails.className = 'today-forecast-details';
+
+    todaySummary.appendChild(todayForecastContainer);
+    todaySummary.appendChild(todayForecastDetails);
+    
 
     todayTitleContainer.appendChild(location);
     todayTitleContainer.appendChild(localtime);
     todayWeatherContainer.appendChild(todayTitleContainer);
+    todayWeatherContainer.appendChild(todaySummary);
 
     // Create container for display today's details
     const todayDetailsContainer = document.createElement('div');
