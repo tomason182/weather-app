@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    
+}
+
+#main-content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+#search-container {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    border: 1px solid orange;
+    height: 8vh;
+}
+
+#main-content {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+}
+
+.today-weather {
+    border: 1px solid violet;
+    height: 25vh;
+    width: 60%;
+}
+
+.today-details {
+    border: 1px solid blue;
+    height: 50vh;
+    width: 60%;
+}
