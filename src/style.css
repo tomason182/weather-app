@@ -35,6 +35,14 @@
     width: 60%;
 }
 
+.today-title-container {
+    border: 1px solid green;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .3rem .5rem;
+}
+
 .today-details {
     border: 1px solid blue;
     height: 50vh;
