@@ -145,9 +145,6 @@ todayWeather()
   .then((response) => {
     return forecastInfo(response);
   })
-  .then((result) => {
-    console.log("Today's weather: ",result)
-  })
   .catch((error) => {
     console.error("Error in today's weather; ", error);
     throw error;
@@ -156,9 +153,6 @@ todayWeather()
 todayForecast()
   .then((response) => {
     return forecastParams(response);
-  })
-  .then((result) => {
-    console.log("Today's forecast: ", result);
   })
   .catch((error) => {
     console.error("Error in today's forecast: ", error);
@@ -169,9 +163,6 @@ tomorrowForecast()
   .then((response) => {
     return forecastParams(response);
   })
-  .then((result) => {
-    console.log("Tomorrow forecast: ",result);
-  })
   .catch((error) => {
     console.error("Error in tomorrow's forecast: ", error);
     throw error;
@@ -180,9 +171,6 @@ tomorrowForecast()
 afterTomorrowForecast()
 .then((response) => {
   return forecastParams(response);
-})
-.then((result) => {
-  console.log("After tomorrow forecast: ", result);
 })
 .catch((error) => {
   console.error("Error in after tomorrow forecast: ", error);
