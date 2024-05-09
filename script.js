@@ -60,7 +60,9 @@ const forecastParams = (jsonResponse) => {
     "max_temp_f": getMaxTempF(jsonResponse),
     "min_temp_c": getMinTempC(jsonResponse),
     "min_temp_f": getMinTempF(jsonResponse),
-    "rain_prob": getRainProb(jsonResponse)
+    "rain_prob": getRainProb(jsonResponse),
+    "condition_text": getConditionForecastText(jsonResponse),
+    "condition_icon": getConditionForecastIcon(jsonResponse)
   }
 }
 
@@ -96,6 +98,14 @@ const getConditionText = ({current: {condition: {text: value}}}) => {
 }
 
 const getConditionIcon = ({current: {condition: {icon: value}}}) => {
+  return value;
+}
+
+const getConditionForecastText = ({day: {condition: {text: value}}}) => {
+  return value;
+}
+
+const getConditionForecastIcon = ({day: {condition: {icon: value}}}) => {
   return value;
 }
 
