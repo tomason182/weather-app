@@ -71,16 +71,12 @@ const pageBuilder = {
     const subsectionOne = document.createElement('div');
     subsectionOne.className = 'subsection-one';
 
-    // Contenedor de la temperatura actual.
-    const currentTempContainer = document.createElement('div');
-    currentTempContainer.className = 'temperature-container';
-
     // Contenedor informacion actual del clima.
     const currentWeatherInfo = document.createElement('div');
     currentWeatherInfo.className = 'current-weather-info';
 
     // Append current temperature and information to subsection one.
-    subsectionOne.appendChild(currentTempContainer);
+    subsectionOne.appendChild(this.buildCurrentTempContainer(this.today));
     subsectionOne.appendChild(currentWeatherInfo);
 
     // Append all three divs to section one container.
@@ -98,6 +94,30 @@ const pageBuilder = {
   buildSection3: function() {
     console.log("section three running");
     return true;
+  },
+  buildCurrentTempContainer: function(data) {
+    const temp_c = data.temp_c;
+    const temp_f = data.temp_f;
+    const currentTempContainer = document.createElement('div');
+    currentTempContainer.className = 'temperature-container';
+
+    const currentTemp = document.createElement('h2');
+    currentTemp.className = 'current-temperature';
+    currentTemp.textContent = `${temp_c}°C`;
+
+    const currentStatus = document.createElement('h4');
+    currentStatus.className = 'current-status-text';
+    currentStatus.textContent = data.condition_text;
+
+    const currentStatusIcon = document.createElement('img');
+    currentStatusIcon.className = 'current-status-img';
+    currentStatusIcon.src = data.condition_icon;
+
+    currentTempContainer.appendChild(currentTemp);
+    currentTempContainer.appendChild(currentStatus);
+    currentTempContainer.appendChild(currentStatusIcon)
+
+    return currentTempContainer;
   }
 }
 
