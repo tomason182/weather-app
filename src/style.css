@@ -7,14 +7,41 @@ body {
 
 #header {
     display: flex;
+    min-height: 5vh;
     justify-content: space-between;
     padding: 1rem 1rem;
 }
 
 #search-container {
-    width: 50%;
+    width: 33%;
 }
 
 #search {
-    width: 80%;
+    width: 100%;
+}
+
+#main-content{
+    border: 1px solid blue;
+    width: 100%;
+    min-height: 85vh;
+}
+
+#today-summary,
+#today-forecast-info,
+#next-days-info {
+    border: 1px solid green;
+    width: 50%;
+    margin: 1rem auto;
+}
+
+#today-summary {
+    min-height: 10rem;
+}
+
+#today-forecast-info {
+    min-height: 20rem;
+}
+
+#next-days-info {
+    min-height: 30rem;
 }
