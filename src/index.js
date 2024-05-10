@@ -20,6 +20,8 @@ const pageBuilder = {
 
   },
 
+  // Function that goes in the header
+  // Take the searched value
   buildSearch: function() {
     const searchForm = document.querySelector('search-container > form');
     searchForm.addEventListener('submit', (event) => {
@@ -32,22 +34,50 @@ const pageBuilder = {
       return searchedValue;
     })
   }
+  // Switch between celsius and fahrenheit.
+  switchTempUnit: function() {
+    // function to switch between celsius to fahrenheit.
+  }
+
+  // Function that goes inside the main content.
+  buildSection1: function() {
+    const sectionOne = document.createElement('div');
+    sectionOne.className = 'current-weather-container';
+
+    // Contenedor del titulo de la seccion 1.
+    const titleContainer = document.createElement('div');
+    titleContainer.className = 'title-container';
+
+    // Subsection One container.
+    const subsectionOne = document.createElement('div');
+    subsectionOne.className = 'subsection-one';
+
+    // Contenedor de la temperatura actual.
+    const currentTempContainer = document.createElement('div');
+    currentTempContainer.className = 'temperature-container';
+
+    // Contenedor informacion actual del clima.
+    const currentWeatherInfo = document.createElement('div');
+    currentWeatherInfo.className = 'current-weather-info';
+
+    // Append current temperature and information to subsection one.
+    subsectionOne.appendChild(currentTempContainer);
+    subsectionOne.appendChild(currentWeatherInfo);
+
+    // Append all three divs to section one container.
+    sectionOne.appendChild(titleContainer);
+    sectionOne.appendChild(subsectionOne);
+
+    currentWeather.appendChild(title);
+    currentWeather.appendChild(weatherInfo);
+
+    return currentWeather;
+  }
+
 
 
 }
 
-/* console.log("Today result: ", today); */
-
-function getSearchValue() {
-    const searchForm = document.querySelector('#search-container > form');
-
-    searchForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const input = document.getElementById('search');        
-        console.log(input.value);
-        input.value = '';
-    })
-}
 
 const displayWeather = function generateWeatherContainersAndDisplayInfo() {
     const mainContent = document.getElementById('main-content');
