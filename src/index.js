@@ -3,6 +3,39 @@ import { getTodayWeatherData } from "./script";
 
 const today = await getTodayWeatherData();
 
+const pageBuilder = {
+
+  // Build 3 main containers.
+
+  buildHeader: function() {
+    this.buildSearch();
+    this.buildTempSwitch();
+  },
+  buildMainContent: function() {
+    this.buildSection1();
+    this.buildSection2();
+    this.buildSection3();
+  },
+  buildFooter: function() {
+
+  },
+
+  buildSearch: function() {
+    const searchForm = document.querySelector('search-container > form');
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+            
+      const input = document.getElementById('search');
+      const searchedValue = input.value;
+      console.log(searchedValue); // console log the value of the input.
+      input.value = '';
+      return searchedValue;
+    })
+  }
+
+
+}
+
 /* console.log("Today result: ", today); */
 
 function getSearchValue() {
