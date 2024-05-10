@@ -13,9 +13,13 @@ const pageBuilder = {
     this.buildTempSwitch();
   },
   buildMainContent: function() {
-    this.buildSection1(today);
-    this.buildSection2();
-    this.buildSection3();
+    const mainContent = document.getElementById('main-content');
+
+    const sectionOne = this.buildSection1(this.today);
+    const sectionTwo = this.buildSection2();
+    const sectionThree = this.buildSection3();
+
+    mainContent.appendChild(sectionOne);
   },
   buildFooter: function() {
 
@@ -24,26 +28,26 @@ const pageBuilder = {
   // Function that goes in the header
   // Take the searched value
   buildSearch: function() {
-    const searchForm = document.querySelector('search-container > form');
+    const searchForm = document.querySelector('#search-container > form');
     searchForm.addEventListener('submit', (event) => {
       event.preventDefault();
             
       const input = document.getElementById('search');
       const searchedValue = input.value;
-      console.log(searchedValue); // console log the value of the input.
       input.value = '';
       return searchedValue;
     })
   },
   // Switch between celsius and fahrenheit.
-  switchTempUnit: function() {
-    // function to switch between celsius to fahrenheit.
+  buildTempSwitch: function() {
+    console.log("Swith function");
+    return true;
   },
 
-  // Function that goes inside the main content.
+  // Functions that goes inside the main content.
   buildSection1: function(data) {
-    const sectionOne = document.createElement('div');
-    sectionOne.className = 'current-weather-container';
+    const currentWeather = document.createElement('div');
+    currentWeather.className = 'current-weather-container';
 
     // Contenedor del titulo de la seccion 1.
     const titleContainer = document.createElement('div');
@@ -80,10 +84,21 @@ const pageBuilder = {
     subsectionOne.appendChild(currentWeatherInfo);
 
     // Append all three divs to section one container.
-    sectionOne.appendChild(titleContainer);
-    sectionOne.appendChild(subsectionOne);
+    currentWeather.appendChild(titleContainer);
+    currentWeather.appendChild(subsectionOne);
 
-    return sectionOne;
+    return currentWeather;
+  },
+
+  buildSection2: function() {
+    console.log("section two running");
+    return true;
+  },
+  buildSection3: function() {
+    console.log("section three running");
+    return true;
   }
 }
 
+pageBuilder.buildHeader();
+pageBuilder.buildMainContent();
