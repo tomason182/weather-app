@@ -29,24 +29,37 @@
     height: 80vh;
 }
 
-.current-weather-container {
+.section-one {
+    display: flex;
+    flex-direction: column;
     border: 1px solid violet;
-    height: 25vh;
+    height: 150px;
     width: 60%;
 }
 
 .title-container {
     border: 1px solid green;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .3rem .5rem;
 }
 
-.today-details {
+.subsection-one {
+    display: flex;
+    flex-direction: row;
+}
+.temperature-container {
     border: 1px solid blue;
-    height: 50vh;
-    width: 60%;
+    width: 35%;
+    height: 100px;
+}
+
+.current-weather-info {
+    border: 1px dotted blue;
+    width: 65%;
+    height: 100px;
 }
 
 input[type="text"] {

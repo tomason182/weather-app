@@ -47,7 +47,7 @@ const pageBuilder = {
   // Functions that goes inside the main content.
   buildSection1: function(data) {
     const currentWeather = document.createElement('div');
-    currentWeather.className = 'current-weather-container';
+    currentWeather.className = 'section-one';
 
     // Contenedor del titulo de la seccion 1.
     const titleContainer = document.createElement('div');
@@ -90,7 +90,8 @@ const pageBuilder = {
     return currentWeather;
   },
 
-  buildSection2: function() {
+  buildSection2: function(data) {
+
     console.log("section two running");
     return true;
   },
