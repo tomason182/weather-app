@@ -1,11 +1,12 @@
 import './style.css';
-import { getTodayWeatherData } from "./script";
+import { getTodayWeatherData, getTodayForecastData } from "./script";
 
 
 
 const pageBuilder = {
 
   today: await getTodayWeatherData(),
+  todayForecast: await getTodayForecastData(),
   // Build 3 main containers.
 
   buildHeader: function() {
@@ -73,7 +74,7 @@ const pageBuilder = {
 
     // Append current temperature and information to subsection one.
     subsectionOne.appendChild(this.buildCurrentTempContainer(this.today));
-    subsectionOne.appendChild(this.buildCurrentWeatherInfoContainer(this.today));
+    subsectionOne.appendChild(this.buildCurrentWeatherInfoContainer(this.today, this.todayForecast));
 
     // Append all three divs to section one container.
     currentWeather.appendChild(titleContainer);
@@ -117,25 +118,27 @@ const pageBuilder = {
     return currentTempContainer;
   },
 
-  buildCurrentWeatherInfoContainer: function(data) {
+  buildCurrentWeatherInfoContainer: function(firstData, secondData) {
     // Contenedor informacion actual del clima.
     const currentWeatherInfoContainer = document.createElement('div');
     currentWeatherInfoContainer.className = 'current-weather-info-container';
 
     const windSpeed = document.createElement('h4');
     windSpeed.className = 'current-weather-info';
-    windSpeed.textContent = `Wind: ${data.wind_kph} km`;
+    windSpeed.textContent = `Wind: ${firstData.wind_kph} km`;
 
     const humidity = document.createElement('h4');
     humidity.className= 'current-weather-info';
-    humidity.textContent = `Humidity: ${data.humidity}%`;
+    humidity.textContent = `Humidity: ${firstData.humidity}%`;
 
     const rain_prob = document.createElement('h4');
     rain_prob.className = 'current-weather-info';
+    rain_prob.textContent = `Rain probability: ${secondData.rain_prob}`;
 
 
     currentWeatherInfoContainer.appendChild(windSpeed);
     currentWeatherInfoContainer.appendChild(humidity);
+    currentWeatherInfoContainer.appendChild(rain_prob);
 
     return currentWeatherInfoContainer;
   }
