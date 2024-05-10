@@ -17,7 +17,7 @@
     justify-content: center;
     padding: 1rem 0;
     border: 1px solid orange;
-    height: 8vh;
+    height: auto;
 }
 
 #main-content {
@@ -29,13 +29,13 @@
     height: 80vh;
 }
 
-.today-weather {
+.current-weather-container {
     border: 1px solid violet;
     height: 25vh;
     width: 60%;
 }
 
-.today-title-container {
+.title-container {
     border: 1px solid green;
     display: flex;
     justify-content: space-between;
