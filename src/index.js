@@ -40,7 +40,7 @@ const pageBuilder = {
   },
   // Switch between celsius and fahrenheit.
   buildTempSwitch: function() {
-    console.log("Swith function");
+    console.log("Switch function");
     return true;
   },
 
@@ -71,13 +71,9 @@ const pageBuilder = {
     const subsectionOne = document.createElement('div');
     subsectionOne.className = 'subsection-one';
 
-    // Contenedor informacion actual del clima.
-    const currentWeatherInfo = document.createElement('div');
-    currentWeatherInfo.className = 'current-weather-info';
-
     // Append current temperature and information to subsection one.
     subsectionOne.appendChild(this.buildCurrentTempContainer(this.today));
-    subsectionOne.appendChild(currentWeatherInfo);
+    subsectionOne.appendChild(this.buildCurrentWeatherInfoContainer(this.today));
 
     // Append all three divs to section one container.
     currentWeather.appendChild(titleContainer);
@@ -95,6 +91,7 @@ const pageBuilder = {
     console.log("section three running");
     return true;
   },
+
   buildCurrentTempContainer: function(data) {
     const temp_c = data.temp_c;
     const temp_f = data.temp_f;
@@ -115,9 +112,32 @@ const pageBuilder = {
 
     currentTempContainer.appendChild(currentTemp);
     currentTempContainer.appendChild(currentStatus);
-    currentTempContainer.appendChild(currentStatusIcon)
+    currentTempContainer.appendChild(currentStatusIcon);
 
     return currentTempContainer;
+  },
+
+  buildCurrentWeatherInfoContainer: function(data) {
+    // Contenedor informacion actual del clima.
+    const currentWeatherInfoContainer = document.createElement('div');
+    currentWeatherInfoContainer.className = 'current-weather-info-container';
+
+    const windSpeed = document.createElement('h4');
+    windSpeed.className = 'current-weather-info';
+    windSpeed.textContent = `Wind: ${data.wind_kph} km`;
+
+    const humidity = document.createElement('h4');
+    humidity.className= 'current-weather-info';
+    humidity.textContent = `Humidity: ${data.humidity}%`;
+
+    const rain_prob = document.createElement('h4');
+    rain_prob.className = 'current-weather-info';
+
+
+    currentWeatherInfoContainer.appendChild(windSpeed);
+    currentWeatherInfoContainer.appendChild(humidity);
+
+    return currentWeatherInfoContainer;
   }
 }
 
