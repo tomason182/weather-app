@@ -7,17 +7,24 @@ body {
 
 #header {
     display: flex;
-    min-height: 5vh;
+    min-height: 5rem;
+    height: 5vh;
     justify-content: space-between;
     padding: 1rem 1rem;
 }
 
 #search-container {
     width: 33%;
+    height: 100%;
+}
+
+#search-container > form {
+    height: 100%;
 }
 
 #search {
     width: 100%;
+    height: 100%;
 }
 
 #main-content{
@@ -35,7 +42,8 @@ body {
 }
 
 #today-summary {
-    min-height: 10rem;
+    min-height: 20rem;
+    height: 25vh;
 }
 
 #today-forecast-info {
