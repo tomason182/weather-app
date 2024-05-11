@@ -53,6 +53,7 @@ body {
 #today-summary > .summary-title {
     background-color: #ccc;
     flex: 0 0 auto;
+    padding: .5rem .25rem;
 }
 
 #today-summary > .summary-content {
