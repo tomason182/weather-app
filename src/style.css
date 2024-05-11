@@ -27,6 +27,7 @@ body {
     height: 100%;
 }
 
+/* Main content styles */
 #main-content{
     border: 1px solid blue;
     width: 100%;
@@ -41,10 +42,32 @@ body {
     margin: 1rem auto;
 }
 
+/* Today summary containers style */
 #today-summary {
+    display: flex;
+    flex-direction: column;
     min-height: 20rem;
     height: 25vh;
 }
+
+#today-summary > .summary-title {
+    background-color: #ccc;
+    flex: 0 0 auto;
+}
+
+#today-summary > .summary-content {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.summary-content > .summary-temp,
+.summary-content > .summary-icon {
+    border: 1px solid red;
+    flex: 1;
+}
+
+
 
 #today-forecast-info {
     min-height: 20rem;
