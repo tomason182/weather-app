@@ -6,7 +6,7 @@ const pageBuilder = {
   buildHeader: function() {
     const header = this.createElementWithClassName('div', 'header');
     
-    header.appendChild(this.buildLogo);
+    header.appendChild(this.buildLogo());
     header.appendChild(this.buildSearch());
     header.appendChild(this.buildTempSwitch());
 
@@ -31,25 +31,29 @@ const pageBuilder = {
 
   // Header builder
   buildLogo: function() {
-    const logoContainer = this.createElement('div', 'logo-container');
+    const logoContainer = this.createElementWithClassName('div', 'logo-container');
     const logoImg = this.createElement('img', 'logo-img');
     logoImg.src = '#';
     logoImg.alt = 'Logo';
 
     logoContainer.appendChild(logoImg);
     return logoContainer;
-  }
+  },
 
   buildSearch: function() {
-    const searchForm = document.querySelector('#search-container > form');
-    searchForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-            
-      const input = document.getElementById('search');
-      const searchedValue = input.value;
-      input.value = '';
-      return searchedValue;
-    })
+    const searchContainer = this.createElementWithClassName('div', 'search-container');
+    const searchForm = this.createElementWithClassName('form', 'search-form');
+    const searchInput = this.createElementWithClassName('input', 'search-input');
+    
+    searchInput.type = 'text';
+    searchInput.name = 'search';
+    searchInput.placeHolder = 'Enter city or zip-code';
+
+    searchForm.appendChild(searchInput);
+    searchContainer.appendChild(searchForm);
+
+    return searchContainer;
+    }
   },
   // Switch between celsius and fahrenheit.
   buildTempSwitch: function() {
