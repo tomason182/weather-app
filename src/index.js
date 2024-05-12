@@ -53,12 +53,15 @@ const pageBuilder = {
     searchContainer.appendChild(searchForm);
 
     return searchContainer;
-    }
   },
-  // Switch between celsius and fahrenheit.
+
   buildTempSwitch: function() {
-    console.log("Switch function");
-    return true;
+    const switchTempContainer = createElementWithClassName('div', 'switch-temp-container');
+    const switchBtn = this.createElementWithClassName('button', 'switch-btn');
+    switchBtn.textContent = 'Switch temp';
+
+    switchTempContainer.appendChild(switchBtn);
+    return switchTempContainer;
   },
 
   // Functions that goes inside the main content.
