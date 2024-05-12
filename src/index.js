@@ -16,6 +16,14 @@ const pageBuilder = {
     this.mainContainer().appendChild(header);
   },
   buildMainContent: function() {
+
+    const mainContent = this.createElementWithClassName('main-content');
+    mainContent.appendChild(this.firstSection());
+    
+    // More sections can be added.
+
+    this.mainContainer().appendChild(mainContent);
+
     
     // Build main content
 
@@ -59,6 +67,22 @@ const pageBuilder = {
     return switchTempContainer;
   },
 
+  // Main content builders
+  // First section
+
+  firstSection: function() {
+    const firstSectionContainer = this.createElementWithClassName('div', 'first-section-container');
+    const titleContainer = this.createElementWithClassName('div', 'first-section-title');
+    const containerOne = this.createElementWithClassName('div', 'first-section-container-one');
+    const containerTow = this.createElementWithClassName('div', 'first-section-container-two');
+
+    firstSectionContainer.appendChild(titleContainer);
+    firstSectionContainer.appendChild(containerOne);
+    firstSectionContainer.appendChild(containerTow);
+
+    return firstSectionContainer;
+  },
+
   createElementWithClassName: function(type, className) {
     const element = document.createElement(type);
     if (className) element.classList.add(...className.split(' ')); // Can add more than one class name separate with space.
@@ -67,3 +91,4 @@ const pageBuilder = {
 }
 
 pageBuilder.buildHeader();
+pageBuilder.buildMainContent();
