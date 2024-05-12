@@ -17,7 +17,7 @@ const pageBuilder = {
   },
   buildMainContent: function() {
 
-    const mainContent = this.createElementWithClassName('main-content');
+    const mainContent = this.createElementWithClassName('div', 'main-content');
     mainContent.appendChild(this.firstSection());
     
     // More sections can be added.
