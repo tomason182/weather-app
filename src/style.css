@@ -108,5 +108,9 @@
 .weather-detail {
     border: 1px solid black;
     flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .3rem;
 }
 
