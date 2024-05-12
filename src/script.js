@@ -141,7 +141,7 @@ const getRainProb = ({day: {daily_chance_of_rain: value}}) => {
 async function getTodayWeatherData() {
   try {
     const response = await todayWeather();
-    const result = await forecastInfo(response);
+    const result = forecastInfo(response);
     return result;
   } catch (error) {
     console.error("Error in today's weather: ", error);
@@ -181,5 +181,6 @@ async function getAfterTomorrowForecastData() {
     throw error;
   }
 }
+
 
 export {getTodayWeatherData, getTodayForecastData, getTomorrowForecastData, getAfterTomorrowForecastData}

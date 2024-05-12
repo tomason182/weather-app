@@ -1,4 +1,6 @@
 import './style.css';
+import { addContent } from './content';
+import { createElementWithClassName } from './create-element';
 
 const pageBuilder = {
   // Build 3 main containers.
@@ -8,7 +10,7 @@ const pageBuilder = {
   },
 
   buildHeader: function() {
-    const header = this.createElementWithClassName('div', 'header');    
+    const header = createElementWithClassName('div', 'header');    
     header.appendChild(this.buildLogo());
     header.appendChild(this.buildSearch());
     header.appendChild(this.buildTempSwitch());
@@ -17,7 +19,7 @@ const pageBuilder = {
   },
   buildMainContent: function() {
 
-    const mainContent = this.createElementWithClassName('div', 'main-content');
+    const mainContent = createElementWithClassName('div', 'main-content');
     mainContent.appendChild(this.firstSection());
     
     // More sections can be added.
@@ -34,8 +36,8 @@ const pageBuilder = {
 
   // Header builder
   buildLogo: function() {
-    const logoContainer = this.createElementWithClassName('div', 'logo-container');
-    const logoImg = this.createElementWithClassName('img', 'logo-img');
+    const logoContainer = createElementWithClassName('div', 'logo-container');
+    const logoImg = createElementWithClassName('img', 'logo-img');
     logoImg.src = '#';
     logoImg.alt = 'Logo';
 
@@ -44,9 +46,9 @@ const pageBuilder = {
   },
 
   buildSearch: function() {
-    const searchContainer = this.createElementWithClassName('div', 'search-container');
-    const searchForm = this.createElementWithClassName('form', 'search-form');
-    const searchInput = this.createElementWithClassName('input', 'search-input');
+    const searchContainer = createElementWithClassName('div', 'search-container');
+    const searchForm = createElementWithClassName('form', 'search-form');
+    const searchInput = createElementWithClassName('input', 'search-input');
     
     searchInput.type = 'text';
     searchInput.name = 'search';
@@ -59,8 +61,8 @@ const pageBuilder = {
   },
 
   buildTempSwitch: function() {
-    const switchTempContainer = this.createElementWithClassName('div', 'switch-temp-container');
-    const switchBtn = this.createElementWithClassName('button', 'switch-btn');
+    const switchTempContainer = createElementWithClassName('div', 'switch-temp-container');
+    const switchBtn = createElementWithClassName('button', 'switch-btn');
     switchBtn.textContent = 'Switch temp';
 
     switchTempContainer.appendChild(switchBtn);
@@ -71,24 +73,24 @@ const pageBuilder = {
   // First section
 
   firstSection: function() {
-    const firstSectionContainer = this.createElementWithClassName('div', 'first-section-container');
-    const titleContainer = this.createElementWithClassName('div', 'first-section-title');
-    const containerOne = this.createElementWithClassName('div', 'first-section-container-one');
-    const containerTwo = this.createElementWithClassName('div', 'first-section-container-two');
+    const firstSectionContainer = createElementWithClassName('div', 'first-section-container');
+    const titleContainer = createElementWithClassName('div', 'first-section-title');
+    const containerOne = createElementWithClassName('div', 'first-section-container-one');
+    const containerTwo = createElementWithClassName('div', 'first-section-container-two');
 
     // ContainerOne containers.
-    const weatherIconContainer = this.createElementWithClassName('div', 'weather-icon-container');
-    const weatherTempContainer = this.createElementWithClassName('div', 'weather-temp-container');
-    const weatherTextContainer = this.createElementWithClassName('div', 'weather-text-container');
+    const weatherIconContainer = createElementWithClassName('div', 'weather-icon-container');
+    const weatherTempContainer = createElementWithClassName('div', 'weather-temp-container');
+    const weatherTextContainer = createElementWithClassName('div', 'weather-text-container');
 
     // ContainerTwo containers.
     const weatherDetails = ['feelLike', 'windDir', 'rainProb', 'air quality'];
 
     weatherDetails.forEach(element => {
-      const container = this.createElementWithClassName('div', 'weather-detail');
-      const weatherCondition = this.createElementWithClassName('span', 'weather-condition');
+      const container = createElementWithClassName('div', 'weather-detail');
+      const weatherCondition = createElementWithClassName('span', 'weather-condition');
       weatherCondition.textContent = element;
-      const conditionValue = this.createElementWithClassName('span', 'condition-value');
+      const conditionValue = createElementWithClassName('span', 'condition-value');
       container.appendChild(weatherCondition);
       container.appendChild(conditionValue);
       containerTwo.appendChild(container);
@@ -106,19 +108,10 @@ const pageBuilder = {
 
     return firstSectionContainer;
     },
-
-  createElementWithClassName: function (elementType, className) {
-    const element = document.createElement(elementType);
-    
-    if (className) {
-      element.classList.add(className); // Can add more than one class name separate with space.
-    }
-    
-    return element
-  }, 
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   pageBuilder.buildHeader();
   pageBuilder.buildMainContent();
+  addContent.addTitle();
 })
