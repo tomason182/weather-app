@@ -82,19 +82,22 @@ const pageBuilder = {
     const weatherTextContainer = this.createElementWithClassName('div', 'weather-text-container');
 
     // ContainerTwo containers.
-    const feelLikeContainer = this.createElementWithClassName('div', 'feel-like-container');
-    const windContainer = this.createElementWithClassName('div', 'wind-speed-container');
-    const rainProbContainer = this.createElementWithClassName('div', 'rain-prob-container');
+    const weatherDetails = ['feelLike', 'windDir', 'rainProb', 'air quality'];
+
+    weatherDetails.forEach(element => {
+      const container = this.createElementWithClassName('div', 'weather-detail');
+      const weatherCondition = this.createElementWithClassName('span', 'weather-condition');
+      weatherCondition.textContent = element;
+      const conditionValue = this.createElementWithClassName('span', 'condition-value');
+      container.appendChild(weatherCondition);
+      container.appendChild(conditionValue);
+      containerTwo.appendChild(container);
+    });
 
     // Append containers into container one.
     containerOne.appendChild(weatherIconContainer);
     containerOne.appendChild(weatherTempContainer);
     containerOne.appendChild(weatherTextContainer);
-
-    // Append container into container two.
-    containerTwo.appendChild(feelLikeContainer);
-    containerTwo.appendChild(windContainer);
-    containerTwo.appendChild(rainProbContainer);
 
     // Append container into first section.
     firstSectionContainer.appendChild(titleContainer);
@@ -102,7 +105,7 @@ const pageBuilder = {
     firstSectionContainer.appendChild(containerTwo);
 
     return firstSectionContainer;
-  },
+    },
 
   createElementWithClassName: function(type, className) {
     const element = document.createElement(type);
