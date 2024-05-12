@@ -4,9 +4,13 @@ const pageBuilder = {
   // Build 3 main containers.
 
   buildHeader: function() {
-    this.buildLogo();
-    this.buildSearch();
-    this.buildTempSwitch();
+    const header = this.createElementWithClassName('div', 'header');
+    
+    header.appendChild(this.buildLogo);
+    header.appendChild(this.buildSearch());
+    header.appendChild(this.buildTempSwitch());
+
+    document.body.appendChild(header);
   },
   buildMainContent: function() {
     
@@ -22,12 +26,18 @@ const pageBuilder = {
 
   },
   buildFooter: function() {
-
+    this.buildSignature();
   },
 
   // Header builder
   buildLogo: function() {
     const logoContainer = this.createElement('div', 'logo-container');
+    const logoImg = this.createElement('img', 'logo-img');
+    logoImg.src = '#';
+    logoImg.alt = 'Logo';
+
+    logoContainer.appendChild(logoImg);
+    return logoContainer;
   }
 
   buildSearch: function() {
