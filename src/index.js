@@ -1,33 +1,35 @@
 import './style.css';
-import { getTodayWeatherData, getTodayForecastData } from "./script";
-
-
 
 const pageBuilder = {
-
-  today: await getTodayWeatherData(),
-  todayForecast: await getTodayForecastData(),
   // Build 3 main containers.
 
   buildHeader: function() {
+    this.buildLogo();
     this.buildSearch();
     this.buildTempSwitch();
   },
   buildMainContent: function() {
-    const mainContent = document.getElementById('main-content');
+    
+    const content = this.buildMainContent();
 
-    const sectionOne = this.buildSection1(this.today);
+    const sectionOne = this.buildSection1();
     const sectionTwo = this.buildSection2();
     const sectionThree = this.buildSection3();
 
-    mainContent.appendChild(sectionOne);
+    content.appendChild(sectionOne);
+    content.appendChild(sectionTwo);
+    content.appendChild(sectionThree);
+
   },
   buildFooter: function() {
 
   },
 
-  // Function that goes in the header
-  // Take the searched value
+  // Header builder
+  buildLogo: function() {
+    const logoContainer = this.createElement('div', 'logo-container');
+  }
+
   buildSearch: function() {
     const searchForm = document.querySelector('#search-container > form');
     searchForm.addEventListener('submit', (event) => {
@@ -142,6 +144,12 @@ const pageBuilder = {
 
     return currentWeatherInfoContainer;
   }
+
+  createElementWithClassName: function(type, className) {
+    const element = document.createElement(type);
+    if (className) element.classList.add(...className.split(' ')); // Can add more than one class name separate with space.
+    return element
+  } 
 }
 
 pageBuilder.buildHeader();
