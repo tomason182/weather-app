@@ -5,73 +5,38 @@
     
 }
 
-#main-content {
+#main-container {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100vh;
 }
 
-#search-container {
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
-    border: 1px solid orange;
-    height: auto;
-}
-
-#main-content {
-    border: 1px solid red;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 80vh;
-}
-
-.section-one {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid violet;
-    height: 150px;
-    width: 60%;
-}
-
-.title-container {
-    border: 1px solid green;
-    width: 100%;
+.header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: .3rem .5rem;
+    padding: .5rem 1rem;
 }
 
-.subsection-one {
+.logo-container,
+.switch-temp-container {
     display: flex;
-    flex-direction: row;
-}
-.temperature-container {
-    border: 1px solid blue;
-    width: 35%;
-    height: 100px;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
 }
 
-.current-weather-info-container {
-    border: 1px dotted blue;
-    width: 65%;
-    height: 100px;
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 2;    
 }
 
-input[type="text"] {
-    appearance: none;
-    border: none;
-    box-shadow: none;
-    outline: none;
+.search-container > form {
+    width: 70%;
 }
 
-#search {
-    border: 1px solid #ccc;
-    width: 22rem;
-    padding: .3rem;
-    border-radius: 5px;
+.search-input {
+    width: 100%;
 }
