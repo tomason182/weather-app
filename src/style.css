@@ -96,12 +96,17 @@
     grid-row: 2;
 }
 
-
-
 /* First section container two */
 .first-section-container-two {
     border: 1px solid brown;
     grid-column: 2 / 3;
     grid-row: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.weather-detail {
+    border: 1px solid black;
+    flex: 1;
 }
 
