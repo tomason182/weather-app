@@ -41,3 +41,20 @@
 .search-input {
     width: 100%;
 }
+
+/* Style Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    margin: 0;
+}
+/* First section */
+
+.first-section-container {
+    border: 1px solid green;
+    width: 50%;
+    min-height: 300px;
+
+}
