@@ -2,16 +2,18 @@ import './style.css';
 
 const pageBuilder = {
   // Build 3 main containers.
+  mainContainer: function() {
+    const mainContainer = document.getElementById('main-container');
+    return mainContainer;
+  },
 
   buildHeader: function() {
-    const mainContainer = document.getElementById('main-container');
-    const header = this.createElementWithClassName('div', 'header');
-    
+    const header = this.createElementWithClassName('div', 'header');    
     header.appendChild(this.buildLogo());
     header.appendChild(this.buildSearch());
     header.appendChild(this.buildTempSwitch());
 
-    mainContainer.appendChild(header);
+    this.mainContainer().appendChild(header);
   },
   buildMainContent: function() {
     

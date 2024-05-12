@@ -12,6 +12,7 @@
     height: 100vh;
 }
 
+/* Style header container */
 .header {
     display: flex;
     justify-content: space-between;
