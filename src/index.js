@@ -107,12 +107,18 @@ const pageBuilder = {
     return firstSectionContainer;
     },
 
-  createElementWithClassName: function(type, className) {
-    const element = document.createElement(type);
-    if (className) element.classList.add(...className.split(' ')); // Can add more than one class name separate with space.
+  createElementWithClassName: function (elementType, className) {
+    const element = document.createElement(elementType);
+    
+    if (className) {
+      element.classList.add(className); // Can add more than one class name separate with space.
+    }
+    
     return element
-  } 
+  }, 
 }
 
-pageBuilder.buildHeader();
-pageBuilder.buildMainContent();
+document.addEventListener('DOMContentLoaded', () => {
+  pageBuilder.buildHeader();
+  pageBuilder.buildMainContent();
+})
