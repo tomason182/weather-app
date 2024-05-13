@@ -133,6 +133,14 @@
     border: 1px solid black;
     grid-column: 1 / 2;
     grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.weather-icon-container > img {
+    width: 6rem;
 }
 
 .weather-temp-container {
@@ -147,6 +155,7 @@
 .weather-temp-container > h1 {
     font-size: 4rem;
 }
+
 
 .weather-text-container {
     border: 1px solid black;
