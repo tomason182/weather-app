@@ -209,5 +209,12 @@
 
 .daily-forecast-container {
     border: 1px solid green;
-    flex: 4
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.daily-forecast-container > .daily-container {
+    border: 1px solid black;
+    flex: 1;
 }
