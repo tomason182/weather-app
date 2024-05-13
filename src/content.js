@@ -82,6 +82,11 @@ const addContent = {
         windDirElement.textContent = await this.getWindSpeed(data);        
     },
 
+    addRainProb: async function(data) {
+        const rainProbElement = document.querySelector('.first-section-container-two > .weather-detail.RainProb > .condition-value');
+        rainProbElement.textContent = await this.getRainProb(data);
+    },
+
     getLocation: async function(data) {
         const obj = await data;
         return `${obj.city}, ${obj.region}, ${obj.country}`;
@@ -125,6 +130,11 @@ const addContent = {
     getWindSpeed: async function(data) {
         const obj = await data;
         return `${obj.wind_kph} km`;
+    },
+
+    getRainProb: async function(data) {
+        const obj = await data;
+        return `${obj.rain_prob} %`;
     }
 
 }
