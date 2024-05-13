@@ -97,10 +97,10 @@ const pageBuilder = {
     const weatherTextContainer = createElementWithClassName('div', 'weather-text-container');
 
     // ContainerTwo containers.
-    const weatherDetails = ['feelLike', 'windDir', 'rainProb', 'air quality'];
+    const weatherDetails = ['Feel-like', 'WindDir', 'RainProb', 'Air-Quality'];
 
     weatherDetails.forEach(element => {
-      const container = createElementWithClassName('div', 'weather-detail');
+      const container = createElementWithClassName('div', 'weather-detail', element);
       const weatherCondition = createElementWithClassName('span', 'weather-condition');
       weatherCondition.textContent = element;
       const conditionValue = createElementWithClassName('span', 'condition-value');
