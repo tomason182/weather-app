@@ -41,7 +41,7 @@ const addContent = {
                 fahrenheitBtn.classList.add('active');
                 celsiusBtn.classList.remove('active');
                 console.log(temp_f);
-                weatherTempElement.textContent = `${temp_c} °F`;
+                weatherTempElement.textContent = `${temp_f} °F`;
                 return weatherTempElement;
             }
         };
