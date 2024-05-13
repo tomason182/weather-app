@@ -1,6 +1,7 @@
 import './style.css';
 import { addContent } from './content';
 import { createElementWithClassName } from './create-element';
+import { getTodayWeatherData, getTodayForecastData, getTomorrowForecastData, getAfterTomorrowForecastData } from "./script";
 
 const pageBuilder = {
   // Build 3 main containers.
@@ -60,10 +61,18 @@ const pageBuilder = {
     return searchContainer;
   },
 
+  // Toggle btn
   buildTempSwitch: function() {
     const switchTempContainer = createElementWithClassName('div', 'switch-temp-container');
-    const switchBtn = createElementWithClassName('button', 'switch-btn');
-    switchBtn.textContent = 'Switch temp';
+    const switchBtn = createElementWithClassName('div', 'switch-btn');
+    
+    const celsiusUnit = createElementWithClassName('span', 'celsius');
+    celsiusUnit.textContent = '°C';
+    const fahrenheitUnit = createElementWithClassName('span', 'fahrenheit');
+    fahrenheitUnit.textContent = '°F';
+
+    switchBtn.appendChild(celsiusUnit);
+    switchBtn.appendChild(fahrenheitUnit);
 
     switchTempContainer.appendChild(switchBtn);
     return switchTempContainer;
@@ -113,5 +122,5 @@ const pageBuilder = {
 document.addEventListener('DOMContentLoaded', () => {
   pageBuilder.buildHeader();
   pageBuilder.buildMainContent();
-  addContent.addTitle();
+  addContent.addTitle(getTodayWeatherData());
 })
