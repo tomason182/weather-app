@@ -122,6 +122,10 @@ export const pageBuilder = {
     const titleContainer = createElementWithClassName('div', 'second-section-title-container');
     const dailyForecastContainer = createElementWithClassName('div', 'daily-forecast-container');
 
+    const title = createElementWithClassName('h3', 'daily-forecast-title');
+    title.textContent = 'Daily Forecast';
+
+    titleContainer.appendChild(title);
 
     secondSectionContainer.appendChild(titleContainer);
     secondSectionContainer.appendChild(dailyForecastContainer);
