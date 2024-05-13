@@ -1,6 +1,6 @@
 import './style.css';
-import { addContent } from './content';
-import { createElementWithClassName, handleSwitchBtn } from './create-element';
+import { addContent, handleSwitchBtn } from './content';
+import { createElementWithClassName } from './create-element';
 import { getTodayWeatherData, getTodayForecastData, getTomorrowForecastData, getAfterTomorrowForecastData } from "./script";
 
 const pageBuilder = {
@@ -126,6 +126,6 @@ const pageBuilder = {
 document.addEventListener('DOMContentLoaded', () => {
   pageBuilder.buildHeader();
   pageBuilder.buildMainContent();
-  handleSwitchBtn();
   addContent.addTitle(getTodayWeatherData());
+  addContent.addTemp(handleSwitchBtn, getTodayWeatherData());
 })
