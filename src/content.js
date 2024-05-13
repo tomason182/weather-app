@@ -77,6 +77,11 @@ const addContent = {
         weatherTextContainer.appendChild(weatherTextElement);
     },
 
+    addWindDirection: async function(data) {
+        const windDirElement = document.querySelector('.first-section-container-two > .weather-detail.Wind-Speed > .condition-value');
+        windDirElement.textContent = await this.getWindSpeed(data);        
+    },
+
     getLocation: async function(data) {
         const obj = await data;
         return `${obj.city}, ${obj.region}, ${obj.country}`;
@@ -115,6 +120,11 @@ const addContent = {
     getFeelsLikeInFahrenheit: async function(data) {
         const obj = await data;
         return obj.feelslike_f;
+    },
+
+    getWindSpeed: async function(data) {
+        const obj = await data;
+        return `${obj.wind_kph} km`;
     }
 
 }

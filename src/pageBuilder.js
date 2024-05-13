@@ -91,7 +91,7 @@ export const pageBuilder = {
     const weatherTextContainer = createElementWithClassName('div', 'weather-text-container');
 
     // ContainerTwo containers.
-    const weatherDetails = ['Feel-like', 'WindDir', 'RainProb', 'Air-Quality'];
+    const weatherDetails = ['Feel-like', 'Wind-Speed', 'RainProb', 'Air-Quality'];
 
     weatherDetails.forEach(element => {
       const container = createElementWithClassName('div', 'weather-detail', element);
