@@ -217,4 +217,18 @@
 .daily-forecast-container > .daily-container {
     border: 1px solid black;
     flex: 1;
+    display: flex;
+}
+
+.daily-forecast-container > .daily-container > .date,
+.daily-forecast-container > .daily-container > .daily-icon,
+.daily-forecast-container > .daily-container > .min-max-temp,
+.daily-forecast-container > .daily-container > .daily-rain-prob {
+    flex: 1;
+    border: 1px solid brown;
+}
+
+.daily-forecast-container > .daily-container > .daily-detail {
+    flex: 3;
+    border: 1px solid brown;
 }
