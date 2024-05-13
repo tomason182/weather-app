@@ -1,17 +1,23 @@
 import { createElementWithClassName } from "./create-element";
-import { getTodayWeatherData, getTodayForecastData, getTomorrowForecastData, getAfterTomorrowForecastData } from "./script";
+
 
 const addContent = {
-    addTitle: async function() {
+    addTitle: async function(data) {
         const container = document.querySelector('.first-section-title');
         const title = createElementWithClassName('h3', 'location-title');
-        title.textContent = await this.getLocation(getTodayWeatherData());
+        title.textContent = await this.getLocation(data);
 
         const localtime = createElementWithClassName('span', 'local-time');
-        localtime.textContent = await this.getLocalTime(getTodayWeatherData());
+        localtime.textContent = await this.getLocalTime(data);
 
         container.appendChild(title);
         container.appendChild(localtime);
+    },
+
+    addTemp: async function(data) {
+        const weatherTempContainer = document.querySelector('.weather-temp-container');
+        const switchUnitBtn = document.querySelector('.switch-btn');
+        console.log(switchUnitBtn);
     },
 
     getLocation: async function(data) {
@@ -22,7 +28,12 @@ const addContent = {
     getLocalTime: async function(data) {
         const obj = await data;
         return obj.localtime;
-    }
+    },
+
+    getTempInCelsius: async function(data) {
+        const obj = await data;
+        return obj.temp_c;
+    },
 
 }
 
