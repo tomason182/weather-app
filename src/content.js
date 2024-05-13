@@ -87,6 +87,11 @@ const addContent = {
         rainProbElement.textContent = await this.getRainProb(data);
     },
 
+    addHumidity: async function(data) {
+        const airQualityElement = document.querySelector('.first-section-container-two > .weather-detail.Humidity > .condition-value');
+        airQualityElement.textContent = await this.getHumidity(data);
+    },
+
     getLocation: async function(data) {
         const obj = await data;
         return `${obj.city}, ${obj.region}, ${obj.country}`;
@@ -135,6 +140,11 @@ const addContent = {
     getRainProb: async function(data) {
         const obj = await data;
         return `${obj.rain_prob} %`;
+    },
+
+    getHumidity: async function(data) {
+        const obj = await data;
+        return `${obj.humidity} %`;
     }
 
 }
