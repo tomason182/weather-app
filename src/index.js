@@ -65,14 +65,18 @@ const pageBuilder = {
   buildTempSwitch: function() {
     const switchTempContainer = createElementWithClassName('div', 'switch-temp-container');
     const switchBtn = createElementWithClassName('div', 'switch-btn');
+    const celsiusContainer = createElementWithClassName('div', 'celsius-container');
+    const fahrenheitContainer = createElementWithClassName('div', 'fahrenheit-container');
     
     const celsiusUnit = createElementWithClassName('span', 'celsius');
     celsiusUnit.textContent = '°C';
     const fahrenheitUnit = createElementWithClassName('span', 'fahrenheit');
     fahrenheitUnit.textContent = '°F';
 
-    switchBtn.appendChild(celsiusUnit);
-    switchBtn.appendChild(fahrenheitUnit);
+    celsiusContainer.appendChild(celsiusUnit);
+    fahrenheitContainer.appendChild(fahrenheitUnit);
+    switchBtn.appendChild(celsiusContainer);
+    switchBtn.appendChild(fahrenheitContainer);
 
     switchTempContainer.appendChild(switchBtn);
     return switchTempContainer;
