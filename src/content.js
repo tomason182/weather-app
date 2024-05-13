@@ -26,14 +26,14 @@ const addContent = {
         const temp_f = await this.getTempInFahrenheit(data);
     
         celsiusBtn.classList.add('active');
-        weatherTempElement.textContent = temp_c;
+        weatherTempElement.textContent = `${temp_c} °C`;
         
         const handleCelsiusClick = () => {
             if(!celsiusBtn.classList.contains('active')) {
                 celsiusBtn.classList.add('active');
                 fahrenheitBtn.classList.remove('active');
                 console.log(temp_c);
-                weatherTempElement.textContent = temp_c;
+                weatherTempElement.textContent = `${temp_c} °C`;
                 return weatherTempElement;
             }
         };
@@ -43,7 +43,7 @@ const addContent = {
                 fahrenheitBtn.classList.add('active');
                 celsiusBtn.classList.remove('active');
                 console.log(temp_f);
-                weatherTempElement.textContent = temp_f;
+                weatherTempElement.textContent = `${temp_c} °F`;
                 return weatherTempElement;
             }
         };
