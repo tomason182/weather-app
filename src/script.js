@@ -44,6 +44,8 @@ const forecastInfo = (jsonResponse) => {
     "localtime": getLocalTime(jsonResponse),
     "temp_c": getTempInCelsius(jsonResponse),
     "temp_f": getTempInFahrenheit(jsonResponse),
+    "feelslike_c": getFeelLikeInCelsius(jsonResponse),
+    "feelslike_f": getFeelLikeInFahrenheit(jsonResponse),
     "condition_text": getConditionText(jsonResponse),
     "condition_icon": getConditionIcon(jsonResponse),
     "wind_kph": getWindSpeedKph(jsonResponse),
@@ -87,6 +89,14 @@ const getTempInCelsius = ({current: {temp_c: value}}) => {
 }
 
 const getTempInFahrenheit = ({current: {temp_f: value}}) => {
+  return value;
+}
+
+const getFeelLikeInCelsius = ({current: {feelslike_c: value}}) => {
+  return value;
+} 
+
+const getFeelLikeInFahrenheit = ({current: {feelslike_f: value}}) => {
   return value;
 }
 
