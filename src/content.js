@@ -19,7 +19,6 @@ const addContent = {
         const fahrenheitBtn = document.querySelector('.fahrenheit-container');
         const tempContainer = document.querySelector('.weather-temp-container');
         const feelLikeElement = document.querySelector('.first-section-container-two > .weather-detail.Feel-like > .condition-value');
-        console.log(feelLikeElement);
         const weatherTempElement = createElementWithClassName('h1', 'temperature-value');
 
         const temp_c = await this.getTempInCelsius(data);
@@ -90,6 +89,25 @@ const addContent = {
     addHumidity: async function(data) {
         const airQualityElement = document.querySelector('.first-section-container-two > .weather-detail.Humidity > .condition-value');
         airQualityElement.textContent = await this.getHumidity(data);
+    },
+
+    addDate: function() {
+        const dailyContainer = document.querySelectorAll('.daily-container');
+        dailyContainer.forEach((item) => {
+            if (item.classList.contains('Today')) {
+                const today = new Date().getDate();
+                const month = (new Date().getMonth()) + 1;
+                const dateContainer = item.querySelector('.date');
+                const dateElement = createElementWithClassName('span', 'date');
+                const day = createElementWithClassName('span', 'day');
+                dateElement.textContent = 'Today';
+                day.textContent = `${today}/${month}`;
+                dateContainer.appendChild(dateElement);
+                dateContainer.appendChild(day);
+            }
+            console.log(item);
+        })
+        
     },
 
     getLocation: async function(data) {
