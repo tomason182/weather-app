@@ -42,6 +42,53 @@
     width: 100%;
 }
 
+/* Switch temperature btn style */
+.switch-btn {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    width: 6rem;
+    height: 2rem;
+    padding: 0;
+
+}
+
+.switch-btn > .celsius-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.switch-btn > .celsius-container.active {
+    background-color: #2b2d42;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    color: #fff
+}
+
+.switch-btn > .fahrenheit-container.active {
+    background-color: #2b2d42;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    color: #fff
+}
+
+.switch-btn > .celsius-container > span {
+    flex: 1;
+    text-align: center;
+}
+
+.switch-btn > .fahrenheit-container {
+    flex: 1;
+    display: flex;   
+    align-items: center;
+}
+
+.switch-btn > .fahrenheit-container > span {
+    flex: 1;
+    text-align: center;
+}
 /* Style Main Content */
 .main-content {
     display: flex;
