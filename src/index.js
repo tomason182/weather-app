@@ -127,5 +127,5 @@ document.addEventListener('DOMContentLoaded', () => {
   pageBuilder.buildHeader();
   pageBuilder.buildMainContent();
   addContent.addTitle(getTodayWeatherData());
-  addContent.addTemp(handleSwitchBtn, getTodayWeatherData());
+  addContent.addTemp(getTodayWeatherData());
 })
