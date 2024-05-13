@@ -125,6 +125,24 @@ export const pageBuilder = {
     const title = createElementWithClassName('h3', 'daily-forecast-title');
     title.textContent = 'Daily Forecast';
 
+    const dailyForecastList = ['Today', 'Tomorrow', 'After-tomorrow'];
+
+    dailyForecastList.forEach((item) => {
+      const containerCreation = createElementWithClassName('div', 'daily-container', item);
+      const date = createElementWithClassName('div', 'date');
+      const icon = createElementWithClassName('div', 'daily-icon');
+      const minMaxTemp = createElementWithClassName('div', 'min-max-temp');
+      const dailyDetail = createElementWithClassName('div', 'daily-detail');
+      const dailyRainProb = createElementWithClassName('div', 'daily-rain-prob');
+
+      containerCreation.appendChild(date);
+      containerCreation.appendChild(icon);
+      containerCreation.appendChild(minMaxTemp);
+      containerCreation.appendChild(dailyDetail);
+      containerCreation.appendChild(dailyRainProb);
+      dailyForecastContainer.appendChild(containerCreation);
+    })
+
     titleContainer.appendChild(title);
 
     secondSectionContainer.appendChild(titleContainer);
