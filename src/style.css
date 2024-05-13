@@ -197,4 +197,17 @@
     border: 1px solid black;
     width: 100%;
     height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: .33rem
+}
+
+.second-section-title-container {
+    border: 1px solid red;
+    flex: 1;
+}
+
+.daily-forecast-container {
+    border: 1px solid green;
+    flex: 4
 }
