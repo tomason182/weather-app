@@ -18,9 +18,7 @@ const addContent = {
         const celsiusBtn = document.querySelector('.celsius-container');
         const fahrenheitBtn = document.querySelector('.fahrenheit-container');
         const tempContainer = document.querySelector('.weather-temp-container');
-        const weatherTempElement = createElementWithClassName('h1', 'temperature-value');
-
-        
+        const weatherTempElement = createElementWithClassName('h1', 'temperature-value');        
 
         const temp_c = await this.getTempInCelsius(data);
         const temp_f = await this.getTempInFahrenheit(data);
@@ -65,6 +63,14 @@ const addContent = {
         weatherIconContainer.appendChild(weatherIconElement);
     },
 
+    addWeatherCondition: async function(data) {
+        const weatherTextContainer = document.querySelector('.weather-text-container');
+        const weatherTextElement = createElementWithClassName('h4', 'weather-condition');
+
+        weatherTextElement.textContent = await this.getWeatherCondition(data);
+        weatherTextContainer.appendChild(weatherTextElement);
+    },
+
     getLocation: async function(data) {
         const obj = await data;
         return `${obj.city}, ${obj.region}, ${obj.country}`;
@@ -88,7 +94,13 @@ const addContent = {
     getWeatherIcon: async function(data) {
         const obj = await data;
         return obj.condition_icon;
+    },
+
+    getWeatherCondition: async function(data) {
+        const obj = await data;
+        return obj.condition_text;
     }
+
 }
 
 

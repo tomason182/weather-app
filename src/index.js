@@ -129,4 +129,5 @@ document.addEventListener('DOMContentLoaded', () => {
   addContent.addTitle(getTodayWeatherData());
   addContent.addTemp(getTodayWeatherData());
   addContent.addIcon(getTodayWeatherData());
+  addContent.addWeatherCondition(getTodayWeatherData());
 })
