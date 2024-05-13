@@ -134,7 +134,7 @@ const addContent = {
 
     getWindSpeed: async function(data) {
         const obj = await data;
-        return `${obj.wind_kph} km`;
+        return `${obj.wind_kph} km/h`;
     },
 
     getRainProb: async function(data) {
