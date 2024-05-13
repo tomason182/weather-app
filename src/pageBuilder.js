@@ -19,6 +19,7 @@ export const pageBuilder = {
 
     const mainContent = createElementWithClassName('div', 'main-content');
     mainContent.appendChild(this.firstSection());
+    mainContent.appendChild(this.secondSection());
 
     // More sections can be added.
     this.mainContainer().appendChild(mainContent);
@@ -115,4 +116,16 @@ export const pageBuilder = {
 
     return firstSectionContainer;
   },
+
+  secondSection: function () {
+    const secondSectionContainer = createElementWithClassName('div', 'second-section-container');
+    const titleContainer = createElementWithClassName('div', 'second-section-title-container');
+    const dailyForecastContainer = createElementWithClassName('div', 'daily-forecast-container');
+
+
+    secondSectionContainer.appendChild(titleContainer);
+    secondSectionContainer.appendChild(dailyForecastContainer);
+
+    return secondSectionContainer;
+  }
 };
