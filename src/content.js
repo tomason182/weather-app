@@ -56,6 +56,15 @@ const addContent = {
         return data.temp_c;
     },
 
+    addIcon: async function(data) {
+        const weatherIconContainer = document.querySelector('.weather-icon-container');
+        const weatherIconElement = createElementWithClassName('img', 'weather-icon');
+
+        weatherIconElement.src = await this.getWeatherIcon(data);
+        weatherIconElement.alt = 'weather-icon';
+        weatherIconContainer.appendChild(weatherIconElement);
+    },
+
     getLocation: async function(data) {
         const obj = await data;
         return `${obj.city}, ${obj.region}, ${obj.country}`;
@@ -74,6 +83,11 @@ const addContent = {
     getTempInFahrenheit: async function(data) {
         const obj = await data;
         return obj.temp_f;
+    },
+
+    getWeatherIcon: async function(data) {
+        const obj = await data;
+        return obj.condition_icon;
     }
 }
 
